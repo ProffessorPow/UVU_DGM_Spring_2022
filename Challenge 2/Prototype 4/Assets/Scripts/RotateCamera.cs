@@ -9,12 +9,13 @@ public class RotateCamera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Allows player to move the camera around a specified radius
         float horizontalInput = Input.GetAxis("Horizontal");
 
         transform.Rotate(Vector3.up, horizontalInput * rotationSpeed * Time.deltaTime);
