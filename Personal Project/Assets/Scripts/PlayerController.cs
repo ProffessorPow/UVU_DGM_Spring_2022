@@ -5,21 +5,21 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody playerRb;
-    private GameObject goblin;
+
+    public GameObject sword;
 
     private float rightBound = 25;
     private float topBound = 14;
-    private int playerHealth = 3;
 
     public float rotationSpeed;
     public float moveSpeed = 10;
-    public float pushbackForce;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        playerRb = GetComponent<Rigidbody>();
-        goblin = GameObject.Find("Goblin");
+        playerRb = gameObject.GetComponent<Rigidbody>();
+        
     }
 
     // Update is called once per frame
@@ -61,13 +61,4 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Goblin"))
-        {
-            playerRb.AddForce((transform.position - goblin.transform.position) * pushbackForce, ForceMode.Impulse);
-            playerHealth--;
-            Debug.Log(playerHealth);
-        }
-    }
 }
