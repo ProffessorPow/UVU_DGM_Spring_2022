@@ -29,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2180997852149459805}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.02, z: 0}
-  m_LocalScale: {x: 1, y: 2, z: 1}
+  m_LocalPosition: {x: 0.00000014007, y: 1.41, z: -0.096302}
+  m_LocalScale: {x: 1.47, y: 2.94, z: 1.47}
   m_Children:
   - {fileID: 4883298529734115003}
   m_Father: {fileID: 0}
@@ -128,8 +128,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pushbackForce: 10
   pushbackForce2: 1000
-  speed: 1000
-  target: {fileID: 7886686422511181152, guid: ea65a988deb7a794eb2a0c418ac13005, type: 3}
+  attackDistance: 4
+  speed: 2000
+  enemyAnimator: {fileID: 4883298529724584201}
 --- !u!1001 &4883298529733977193
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -197,6 +198,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: a0c20659838f8e147847eda60ff6bdb5, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 9e3cdc50972d05f4fafcb2b1d8606790, type: 2}
     - target: {fileID: 13700000, guid: a0c20659838f8e147847eda60ff6bdb5, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -210,5 +215,10 @@ PrefabInstance:
 --- !u!4 &4883298529734115003 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400082, guid: a0c20659838f8e147847eda60ff6bdb5, type: 3}
+  m_PrefabInstance: {fileID: 4883298529733977193}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &4883298529724584201 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9500000, guid: a0c20659838f8e147847eda60ff6bdb5, type: 3}
   m_PrefabInstance: {fileID: 4883298529733977193}
   m_PrefabAsset: {fileID: 0}

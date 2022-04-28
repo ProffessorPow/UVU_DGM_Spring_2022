@@ -11,27 +11,47 @@ public class EnemyMovement : MonoBehaviour
 
     public float pushbackForce;
     public float pushbackForce2;
+    public float attackDistance;
 
     public float speed;
-    public Transform target;
 
     private int playerHealth = 3;
+
+    [SerializeField] private Animator enemyAnimator;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.FindWithTag("Player");
         goblinRb = gameObject.GetComponent<Rigidbody>();
-        playerRb = GameObject.Find("Player").GetComponent<Rigidbody>();
+        playerRb = GameObject.FindWithTag("Player").GetComponent<Rigidbody>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
         Vector3 walkDirection = (player.transform.position - transform.position).normalized;
+        float enemyDistance = Vector3.Distance (transform.position, player.transform.position);
+
+        if (enemyDistance <= attackDistance)
+        {
+            StartCoroutine(AttackPlayer());
+        }
 
         goblinRb.AddForce(walkDirection * speed * Time.deltaTime);
-        transform.LookAt(target);
+        transform.LookAt(player.transform);
+
+        float enemyVelocity = goblinRb.velocity.magnitude;
+        if (enemyVelocity > 1.5f)
+        {
+            enemyAnimator.SetBool("enemyRun", true);
+        }
+        else if (enemyVelocity <= 1.5f)
+        {
+            enemyAnimator.SetBool("enemyRun", false);
+        }
+
     }
 
     public void OnCollisionEnter(Collision collision)
@@ -48,6 +68,13 @@ public class EnemyMovement : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    IEnumerator AttackPlayer()
+    {
+        enemyAnimator.SetBool("enemyAttacking", true);
+        yield return new WaitForSeconds(2.0f);
+        enemyAnimator.SetBool("enemyAttacking", false);
     }
 
 }

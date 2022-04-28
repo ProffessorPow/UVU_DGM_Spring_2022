@@ -15,6 +15,11 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 10;
     
 
+    private bool isSwinging;
+
+    [SerializeField] private Animator walking;
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +32,18 @@ public class PlayerController : MonoBehaviour
     {
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
+
+        //controlls the running animation for the player
+        float playerVelocity = playerRb.velocity.magnitude;
+        if (playerVelocity > 5)
+        {
+            walking.SetBool("Run", true);
+        }
+        else if (playerVelocity <= 5)
+        {
+            walking.SetBool("Run", false);
+        }
+        
 
         //Allows the player to move in all directions on a 2d plane
         playerRb.AddForce(Vector3.forward * moveSpeed * verticalInput * Time.deltaTime);
@@ -60,5 +77,7 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(-rightBound, transform.position.y, transform.position.z);
         }
     }
+
+   
 
 }
